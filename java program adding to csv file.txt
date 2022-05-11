@@ -1,0 +1,29 @@
+String csvFile = "myfile.csv";
+List<String[]> rowList = new ArrayList();
+String line = "";
+String cvsSplitBy = ",";
+String encoding = "UTF-8";
+BufferedReader br2 = null;
+try {
+    int counterRow = 0;
+    br2 =  new BufferedReader(new InputStreamReader(new FileInputStream(csvFile), encoding));
+    while ((line = br2.readLine()) != null) { 
+        line=line.replaceAll(",,", ",NA,");
+        String[] object = line.split(cvsSplitBy);
+        rowList.add(object); 
+        counterRow++;
+    }
+    System.out.println("counterRow is: "+counterRow);
+    for(int i=1;i<rowList.size();i++){
+        try{
+           //this method includes many if elses only.
+           ImplementDecisionTreeRulesFor2012(rowList.get(i)[0],rowList.get(i)[1],rowList.get(i)[2],rowList.get(i)[3],rowList.get(i)[4],rowList.get(i)[5],rowList.get(i)[6]); 
+        }
+        catch(Exception ex){
+           System.out.printlnt("Exception occurred");   
+        }
+    }
+}
+catch(Exception ex){
+    System.out.println("fix"+ex);
+}
